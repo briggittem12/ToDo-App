@@ -1,23 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-const TodoForm = () => {
-
-   const [capInput, setCapInput] = useState('')
+const TodoForm = ({ taks, setTaks, capInput, setCapInput }) => {
 
 
    const capSubmit = e => {
-     e.preventDefault()
-      
-      
+    e.preventDefault(); 
+      setTaks([
+      ...taks, {
+        id: crypto.randomUUID(),
+        title: capInput,
+        isCompleted: false
+        }
+      ])
+      setCapInput('')
+   }
+
+   
+   const changeSubmit = e => {
+      setCapInput(e.target.value);
    }
 
 
-  console.log(capInput)
+
   return (
-    <form onSubmit={capSubmit}>
-      <input type="text" id='todo' placeholder="Add your task"/>
-      <button>Save</button>
-    </form>
+    <section>
+      <form onSubmit={capSubmit}>
+
+        <input 
+        onChange={changeSubmit} 
+        value={capInput}
+        type="text" 
+        id='todo' 
+        placeholder="Add your task"/>
+
+        <button>Save</button>
+
+      </form>
+    </section>
+      
   )
 }
 

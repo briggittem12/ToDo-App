@@ -1,15 +1,37 @@
 import { useState } from 'react'
 import './App.css'
 import TodoForm from './components/TodoForm'
+import TodoList from './components/TodoList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [taks, setTaks] = useState([])
+  const [capInput, setCapInput] = useState('')
+  const [updateInfo, setUpdateInfo] = useState(null)
+
+
 
   return (
-    <div className="App">
+    <>
+
       <h1>Todo's App</h1>
-      <TodoForm/>
-    </div>
+
+      <TodoForm 
+      taks={taks} 
+      setTaks={setTaks} 
+      capInput={capInput} 
+      setCapInput={setCapInput}
+      updateInfo={updateInfo}
+      setUpdateInfo={setUpdateInfo}
+      />
+
+      <TodoList
+      taks={taks} 
+      setTaks={setTaks} 
+      updateInfo={updateInfo}
+      setUpdateInfo={setUpdateInfo}
+      />
+
+    </>
   )
 }
 
