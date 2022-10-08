@@ -1,13 +1,10 @@
 import React from 'react'
-import Todo from './Todo'
 
-const TodoList = ({ taks, setTaks }) => {
+
+const TodoList = ({ taks, setTaks, setUpdateInfo }) => {
 
 //* buttons funcionalitys
 
-const deleteTask = ({id}) => {
-  setTaks(taks.filter(todo => todo.id !== id))
-}
 
 const completeTask = (todo) => {
   setTaks(
@@ -17,9 +14,17 @@ const completeTask = (todo) => {
       }
       return item
     })
-  )
-}
+    )
+  }
+  
+  const changeInfo = ({id}) => {
+    let findTask = taks.find(todo => todo.id === id)
+    setUpdateInfo(findTask)
+  }
 
+  const deleteTask = ({id}) => {
+    setTaks(taks.filter(todo => todo.id !== id))
+  }
 
 
   return (
@@ -31,7 +36,7 @@ const completeTask = (todo) => {
             <p>{todo.title}</p>
       <div>
         <button onClick={() => completeTask(todo)}>compelte</button>
-        <button>update</button>
+        <button onClick={() => changeInfo(todo)}>update</button>
         <button onClick={() => deleteTask(todo)}>Delete</button>
       </div>
         </li>

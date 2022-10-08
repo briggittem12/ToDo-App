@@ -27,7 +27,6 @@ function App() {
       <TodoList
       taks={taks} 
       setTaks={setTaks} 
-      updateInfo={updateInfo}
       setUpdateInfo={setUpdateInfo}
       />
 
