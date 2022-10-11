@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react'
+import React from 'react';
+import { useEffect } from 'react';
+import { BiSend } from 'react-icons/bi'
+
 
 const TodoForm = ({ taks, setTaks, capInput, setCapInput, updateInfo, setUpdateInfo }) => {
 
   //? funtion for edit todo content
   const updateTask = (id, title, isCompleted) => {
-    const newTask = taks.map (todo => todo.id === id ? {id, title, isCompleted} : todo)
-    setTaks(newTask)
-    setUpdateInfo('')
+    const newTask = taks.map(todo => todo.id === id ? {id, title, isCompleted} : todo);
+    setTaks(newTask);
+    setUpdateInfo("");
   }
 
   //? ejecutamos el cambio 
@@ -17,6 +20,7 @@ const TodoForm = ({ taks, setTaks, capInput, setCapInput, updateInfo, setUpdateI
       setCapInput('')
     }
   }, [setCapInput, updateInfo]);
+
 
   //? capture data for default
    const capSubmit = e => {
@@ -43,17 +47,18 @@ const TodoForm = ({ taks, setTaks, capInput, setCapInput, updateInfo, setUpdateI
 
 
   return (
-    <section>
-      <form onSubmit={capSubmit}>
+    <section className="container">
+      <form onSubmit={capSubmit} className="input-group mb-3">
 
         <input 
         onChange={changeSubmit} 
         value={capInput}
         type="text" 
         id='todo' 
-        placeholder="Add your task"/>
+        placeholder="Add your task"
+        className="form-control"/>
 
-        <button>Save</button>
+        <button className="btn btn-outline-danger b-save"><BiSend /></button>
 
       </form>
     </section>

@@ -1,19 +1,29 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
 
 function App() {
-  const [taks, setTaks] = useState([])
+
+  const initialState = JSON.parse(localStorage.getItem('taks')) || []
+
+  //* save, edit, delete info 
   const [capInput, setCapInput] = useState('')
+  const [taks, setTaks] = useState(initialState)
   const [updateInfo, setUpdateInfo] = useState(null)
 
 
+  useEffect(() => {
+    localStorage.setItem('taks', JSON.stringify(taks))
+  }, [taks])
 
+
+ 
   return (
     <>
-
-      <h1>Todo's App</h1>
+      <header className="container">
+        <h1 className="d-flex justify-content-center title">Todo's App</h1>
+      </header>
 
       <TodoForm 
       taks={taks} 
