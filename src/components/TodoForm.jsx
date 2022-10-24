@@ -1,14 +1,14 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { BiSend } from 'react-icons/bi'
+import { BiSend } from 'react-icons/bi';
 
 
-const TodoForm = ({ taks, setTaks, capInput, setCapInput, updateInfo, setUpdateInfo }) => {
+const TodoForm = ({ tasks, setTasks, capInput, setCapInput, updateInfo, setUpdateInfo }) => {
 
   //? funtion for edit todo content
-  const updateTask = (id, title, isCompleted) => {
-    const newTask = taks.map(todo => todo.id === id ? {id, title, isCompleted} : todo);
-    setTaks(newTask);
+  const updateTask = (title, id, isCompleted) => {
+    const newTask = tasks.map((task) => task.id === id ? {title, id, isCompleted} : task); 
+    setTasks(newTask);
     setUpdateInfo("");
   }
 
@@ -26,14 +26,14 @@ const TodoForm = ({ taks, setTaks, capInput, setCapInput, updateInfo, setUpdateI
    const capSubmit = e => {
     e.preventDefault(); 
       if(!updateInfo){
-        setTaks([
-        ...taks, {
+        setTasks([
+        ...tasks, {
           id: crypto.randomUUID(),
           title: capInput,
           isCompleted: false
           }
-        ])
-        setCapInput('')
+        ]);
+        setCapInput('');
       } else {
         updateTask(capInput, updateInfo.id, updateInfo.isCompleted)
       }

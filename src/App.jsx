@@ -5,17 +5,17 @@ import TodoList from './components/TodoList'
 
 function App() {
 
-  const initialState = JSON.parse(localStorage.getItem('taks')) || []
+  const initialState = JSON.parse(localStorage.getItem('tasks')) || []
 
   //* save, edit, delete info 
   const [capInput, setCapInput] = useState('')
-  const [taks, setTaks] = useState(initialState)
+  const [tasks, setTasks] = useState(initialState)
   const [updateInfo, setUpdateInfo] = useState(null)
 
 
   useEffect(() => {
-    localStorage.setItem('taks', JSON.stringify(taks))
-  }, [taks])
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
 
  
@@ -26,8 +26,8 @@ function App() {
       </header>
 
       <TodoForm 
-      taks={taks} 
-      setTaks={setTaks} 
+      tasks={tasks} 
+      setTasks={setTasks} 
       capInput={capInput} 
       setCapInput={setCapInput}
       updateInfo={updateInfo}
@@ -35,8 +35,8 @@ function App() {
       />
 
       <TodoList
-      taks={taks} 
-      setTaks={setTaks} 
+      tasks={tasks} 
+      setTasks={setTasks} 
       setUpdateInfo={setUpdateInfo}
       />
 

@@ -1,17 +1,17 @@
 import React from 'react';
-import { FaTrashAlt } from 'react-icons/fa'
-import { FaRegEdit } from 'react-icons/fa'
+import { FaTrashAlt } from 'react-icons/fa';
+import { FaRegEdit } from 'react-icons/fa';
 
 
-const TodoList = ({ taks, setTaks, setUpdateInfo }) => {
+const TodoList = ({ tasks, setTasks, setUpdateInfo }) => {
 
 //* buttons funcionalitys
 
 
-const completeTask = (todo) => {
-  setTaks(
-    taks.map(item => {
-      if(item.id === todo.id){
+const completeTask = (task) => {
+  setTasks(
+    tasks.map(item => {
+      if(item.id === task.id){
         return { ...item, isCompleted: !item.isCompleted }
       }
       return item
@@ -19,13 +19,15 @@ const completeTask = (todo) => {
     )
   }
   
+
   const changeInfo = ({id}) => {
-    let findTask = taks.find(todo => todo.id === id)
+    let findTask = tasks.find(task => task.id === id)
     setUpdateInfo(findTask)
   }
 
+
   const deleteTask = ({id}) => {
-    setTaks(taks.filter(todo => todo.id !== id))
+    setTasks(tasks.filter(task => task.id !== id))
   }
 
 
@@ -34,17 +36,17 @@ const completeTask = (todo) => {
       <article className="card d-flex shadow p-3 mb-5 bg-body rounded">
 
       {
-        taks.map(todo => (
+        tasks.map(task => (
           
-          <li key={todo.id} className="card-text flex-row shadow  p-3 mb-5 rounded">
-          <input onClick={() => completeTask(todo)} className="form-check-input" type="checkbox"/>
-            <p className='t-info d-inline'>{todo.title}</p>
+          <div key={task.id} className="card-text flex-row shadow  p-3 mb-5 rounded">
+          <input onClick={() => completeTask(task)} className="form-check-input" type="checkbox" />
+            <p className='t-info d-inline'>{task.title}</p>
       <div className="d-flex justify-content-end gap-3">
-          <button className="btn btn-info b-save" onClick={() => changeInfo(todo)}><FaRegEdit /></button> 
-          <button className="btn btn-info b-save" onClick={() => deleteTask(todo)}><FaTrashAlt /></button>
+          <button className="btn btn-info b-save" onClick={() => changeInfo(task)}><FaRegEdit /></button> 
+          <button className="btn btn-info b-save" onClick={() => deleteTask(task)}><FaTrashAlt /></button>
       </div>
-        </li>
-    
+        </div>
+        
         ))
       }
       </article>
